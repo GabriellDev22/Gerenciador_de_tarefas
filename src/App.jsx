@@ -1,3 +1,5 @@
+//Implementar feature de imp
+
 import { useState } from "react";
 import "./App.css";
 import Tasks from "./components/Tasks";
@@ -43,18 +45,28 @@ function App() {
   }
 
   function adicionarTask() {
+    //Com o layout já definido, agora posso focar em adicionar a tarefa, usando o setTasks, após adicionar a navbar e organizar o fluxo de comportamento no mobile/desktop
     console.log("teste function");
   }
-
+  //organizar a estrutura do app, fazer uma navbar interativa e adaptável para mobile, e manter a lista de forma mais centralizada e responsiva
   return (
-    <div className=" min-h-screen w-screen flex justify-center bg-linear-to-b from-blue-900 via-blue-900 to-blue-950 ">
-      <div className="flex flex-col items-center">
-        <h1 className=" text-3xl font-bold text-slate-100 pt-10">
+    <div className="min-h-screen h-full w-full flex justify-center bg-linear-to-b from-blue-900 via-blue-900 to-blue-950 ">
+      {/*navbar lateral*/}
+      <div></div>
+
+      <div className="lg:pl-10 flex flex-col ">
+        <h1 className=" text-4xl font-bold text-center text-slate-100 pt-10">
           Gerenciador de tarefas
         </h1>
-        
-        <div>
-          <Tasks task={tasks} taskClick={taskClick} apagarTask={apagarTask} adicionarTask={adicionarTask}  />
+
+        <div className=" flex flex-col flex-1 lg:w-4xl">
+          <h2 className=" mt-10 pl-3 mb-2 text-3xl font-bold text-slate-100">Tarefas</h2>
+          <Tasks
+            task={tasks}
+            taskClick={taskClick}
+            apagarTask={apagarTask}
+            adicionarTask={adicionarTask}
+          />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 function TaskList(props) {
   return (
-    <li className="flex items-center gap-2 text-slate-100 bg-slate-700 p-2 rounded-md pl-3 border-2 border-transparent transition duration-100 not-lg: lg:text-lg hover:border-2  ">
+    <li className="flex items-center gap-2 text-slate-100 bg-slate-700 p-2 rounded-md pl-3  not-lg: lg:text-lg ">
       <span
         onClick={() => {
           props.taskClick();
