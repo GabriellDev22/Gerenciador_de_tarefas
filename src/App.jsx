@@ -44,9 +44,15 @@ function App() {
     setTasks(deletar);
   }
 
-  function adicionarTask() {
-    //Com o layout já definido, agora posso focar em adicionar a tarefa, usando o setTasks, após adicionar a navbar e organizar o fluxo de comportamento no mobile/desktop
-    console.log("teste function");
+  function adicionarTask(titulo) {
+    const newTask = {
+      id: tasks.length + 1,
+      title: titulo,
+      describe: "",
+      completed: false,
+    };
+    console.log(newTask)
+    setTasks([...tasks, newTask]);
   }
   //organizar a estrutura do app, fazer uma navbar interativa e adaptável para mobile, e manter a lista de forma mais centralizada e responsiva
   return (
@@ -60,7 +66,9 @@ function App() {
         </h1>
 
         <div className=" flex flex-col flex-1 lg:w-4xl">
-          <h2 className=" mt-10 pl-3 mb-2 text-3xl font-bold text-slate-100">Tarefas</h2>
+          <h2 className=" mt-10 pl-3 mb-2 text-3xl font-bold text-slate-100">
+            Tarefas
+          </h2>
           <Tasks
             task={tasks}
             taskClick={taskClick}

@@ -24,7 +24,13 @@ function Tasks(props) {
         ))}
       </ul>
       <div className="p-6">
-        <CreateTask></CreateTask>
+        <CreateTask
+          adicionarTask={(titulo) => {
+            props.adicionarTask(titulo);
+          }}
+        >
+
+        </CreateTask>
       </div>
     </div>
   );
