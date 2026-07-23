@@ -1,11 +1,9 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState ,useRef, useEffect } from "react";
 function CreateTask(props) {
   const [inputAberto, setInputAberto] = useState(false);
   const [input, setInput] = useState("");
-  function abrirInput() {
-    setInputAberto(true);
-  }
+  const inputRef = useRef(null);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function fecharInput() {
     setInputAberto(false);
     adicionarTask();
@@ -17,27 +15,33 @@ function CreateTask(props) {
     }
   }
 
-  //Sempre que o input mudar estado, executa!
+  //useEffect pensando na renderização ao abrir input e no momento que o mesmo é fechado pelo click fora da div
+  // Ao ser fechado, dispara a função que confere se o usuário digitou algo e salva automaticamente
   useEffect(() => {
-    function cliqueFora(event) {
-      if (inputAberto && !event.target.closest(".inputAddTask")) {
-        fecharInput();
+    if (inputAberto == true) {
+      inputRef.current.focus();
+      function cliqueFora(event) {
+        if (!event.target.closest(".inputAddTask")) {
+          //adicionarTask();
+          fecharInput();
+        }
       }
+      document.addEventListener("mousedown", cliqueFora);
+
+      return () => {
+        document.removeEventListener("mousedown", cliqueFora);
+      };
     }
-    document.addEventListener("mousedown", cliqueFora);
-    //Quando o o estado do input for false, remove o EventListener para economizar na memoria e reduzir acumulo de chamadas
-    return () => {
-      document.removeEventListener("mousedown", cliqueFora);
-    };
-  }, [inputAberto, input, props]);
+  }, [inputAberto, fecharInput]);
 
   return (
     //
     <div className="">
       {inputAberto ? (
-        <div className="inputAddTask relative flex items-center justify-end rounded-md bg-slate-700 ">
+        <div className="inputAddTask relative flex items-center justify-end rounded-md bg-slate-700 focus: ">
           <input
             type="text"
+            ref={inputRef}
             value={input}
             onChange={(e) => {
               setInput(e.target.value);
@@ -54,7 +58,7 @@ function CreateTask(props) {
         </div>
       ) : (
         <li
-          onClick={abrirInput}
+          onClick={() => setInputAberto(true)}
           className="flex items-center  bg-blue-600 p-2 rounded-md cursor-pointer hover:bg-blue-500"
         >
           <div className="flex items-center gap-1 p-2 relative">
