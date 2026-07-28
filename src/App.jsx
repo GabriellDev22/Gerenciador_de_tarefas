@@ -5,6 +5,9 @@ import "./App.css";
 import Tasks from "./components/Tasks";
 
 function App() {
+  //const local = localStorage.setItem("nome", "Gabriel", "idade", "22");
+  const get   = localStorage.getItem("idade")
+  console.log(get);
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -51,7 +54,7 @@ function App() {
       describe: "",
       completed: false,
     };
-    console.log(newTask)
+    console.log(newTask);
     setTasks([...tasks, newTask]);
   }
   //organizar a estrutura do app, fazer uma navbar interativa e adaptável para mobile, e manter a lista de forma mais centralizada e responsiva
@@ -65,8 +68,8 @@ function App() {
           Gerenciador de tarefas
         </h1>
 
-        <div className=" flex flex-col flex-1 lg:w-4xl">
-          <h2 className=" mt-10 pl-3 mb-2 text-3xl font-bold text-slate-100">
+        <div className=" flex flex-col flex-1  lg:w-4xl">
+          <h2 className=" mt-6 pl-3 mb-2 text-3xl font-bold text-slate-100 ">
             Tarefas
           </h2>
           <Tasks

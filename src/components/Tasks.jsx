@@ -3,8 +3,10 @@ import TaskList from "./ui/TaskList";
 import CreateTask from "./ui/CreateTask";
 function Tasks(props) {
   return (
-    <div className=" bg-slate-900 rounded-md flex-1 flex flex-col   ">
-      <ul className="bg-slate-900 flex-1 space-y-4 p-6 rounded-md shadow">
+    <div className=" bg-slate-900 rounded-md flex-1 flex relative flex-col max-w-4xl ">
+
+      
+      <ul className="bg-slate-900 h-140 lg:h-130   space-y-4 p-6 rounded-md shadow overflow-y-scroll ">
         {/*Uso do map para mapear e renderizar todas as tasks recebidas do componente pai*/}
         {props.task.map((task) => (
           <TaskList
@@ -23,15 +25,14 @@ function Tasks(props) {
           </TaskList>
         ))}
       </ul>
-      <div className="p-6">
+        <div className="p-6 absolute bottom-0 w-full ">
         <CreateTask
           adicionarTask={(titulo) => {
             props.adicionarTask(titulo);
           }}
-        >
-
-        </CreateTask>
+        ></CreateTask>
       </div>
+      
     </div>
   );
 }

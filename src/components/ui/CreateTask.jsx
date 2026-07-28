@@ -36,9 +36,9 @@ function CreateTask(props) {
 
   return (
     //
-    <div className="">
+    <div className=" ">
       {inputAberto ? (
-        <div className="inputAddTask relative flex items-center justify-end rounded-md bg-slate-700 focus: ">
+        <div className="inputAddTask min-w-full relative flex items-center justify-end rounded-md bg-slate-700 focus: ">
           <input
             type="text"
             ref={inputRef}
@@ -59,7 +59,7 @@ function CreateTask(props) {
       ) : (
         <li
           onClick={() => setInputAberto(true)}
-          className="flex items-center  bg-blue-600 p-2 rounded-md cursor-pointer hover:bg-blue-500"
+          className="flex items-center min-w-full  bg-blue-600 p-2 rounded-md cursor-pointer hover:bg-blue-500"
         >
           <div className="flex items-center gap-1 p-2 relative">
             <span className=" text-slate-100 text-lg font-bold ">
