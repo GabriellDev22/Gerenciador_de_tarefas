@@ -5,18 +5,18 @@ function TaskList(props) {
         onClick={() => {
           props.taskClick();
         }}
-        className={`pl-3 text-sm lg:text-lg font-bold cursor-pointer w-full 
+        className={`pl-2 text-sm lg:text-lg font-bold  w-full 
         ${props.task.completed && "line-through"}`}
       >
-        {props.children}
+        <span className="cursor-default">{props.children}</span>
       </span>
       <button
         onClick={() => {
           props.apagarTask();
         }}
-        className="px-2 py-1 bg-red-500 rounded hover:bg-red-600"
+        className="px-2 py-1 bg-red-500 rounded hover:bg-red-600 cursor-pointer "
       >
-        🗑️
+        Apagar
       </button>
     </li>
   );

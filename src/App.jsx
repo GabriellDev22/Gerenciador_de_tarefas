@@ -1,36 +1,22 @@
-//Implementar feature de imp
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Tasks from "./components/Tasks";
 
 function App() {
-  //const local = localStorage.setItem("nome", "Gabriel", "idade", "22");
-  const get   = localStorage.getItem("idade")
-  console.log(get);
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "acordar 6am",
-      describe: "Acordar 6 da manhã todos os dias",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Treinar",
-      describe: "Treinar 7 da manhã todos os dias",
-      completed: false,
-    },
-    {
-      id: 3,
-      title: "estudar",
-      describe: "estudar 9 da manhã todos os dias",
-      completed: false,
-    },
-  ]);
+  const [task, setTask] = useState([]);
+  //Utilização do useEffect para renderizar as tasks salvas no localStorage
+  useEffect(() => {
+    //1-consulta
+    const tasksSalvas = localStorage.getItem("tasks");
+    //2- conversão JSON -> String e atualização do estado caso exista tarefas no localStorage
+    if (tasksSalvas) {
+      setTask(JSON.parse(tasksSalvas));
+    }
+  }, []);
+
   function taskClick(taskId) {
     //Pegar o ID do Task que será sublinhado e montar a lógica que fará ele ser uma task em estado de finalizado!
-    const newTask = tasks.map((task) => {
+    const newTask = task.map((task) => {
       if (task.id === taskId) {
         return {
           ...task,
@@ -39,30 +25,35 @@ function App() {
       }
       return task;
     });
-    setTasks(newTask);
+    setTask(newTask);
+    localStorage.setItem("tasks", JSON.stringify(newTask));
   }
 
   function apagarTask(taskId) {
-    const deletar = tasks.filter((task) => taskId !== task.id);
-    setTasks(deletar);
+    const deletar = task.filter((task) => taskId !== task.id);
+    setTask(deletar);
+    localStorage.setItem("tasks", JSON.stringify(deletar));
   }
 
   function adicionarTask(titulo) {
-    const newTask = {
-      id: tasks.length + 1,
-      title: titulo,
-      describe: "",
-      completed: false,
-    };
-    console.log(newTask);
-    setTasks([...tasks, newTask]);
+    const newTask = [
+      {
+        id: task.length + 1,
+        title: titulo,
+        describe: "",
+        completed: false,
+      },
+      ...task,
+    ];
+
+    setTask(newTask, ...task);
+    localStorage.setItem("tasks", JSON.stringify(newTask));
   }
-  //organizar a estrutura do app, fazer uma navbar interativa e adaptável para mobile, e manter a lista de forma mais centralizada e responsiva
+
   return (
     <div className="min-h-screen h-full w-full flex justify-center bg-linear-to-b from-blue-900 via-blue-900 to-blue-950 ">
       {/*navbar lateral*/}
       <div></div>
-
       <div className="lg:pl-10 flex flex-col ">
         <h1 className=" text-4xl font-bold text-center text-slate-100 pt-10">
           Gerenciador de tarefas
@@ -73,7 +64,7 @@ function App() {
             Tarefas
           </h2>
           <Tasks
-            task={tasks}
+            task={task}
             taskClick={taskClick}
             apagarTask={apagarTask}
             adicionarTask={adicionarTask}
@@ -83,5 +74,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
