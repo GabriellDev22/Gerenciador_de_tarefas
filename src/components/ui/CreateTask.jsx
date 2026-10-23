@@ -1,4 +1,7 @@
+import { Plus } from 'lucide-react';
 import { useState ,useRef, useEffect } from "react";
+import { MoveRight } from 'lucide-react';
+
 function CreateTask(props) {
   const [inputAberto, setInputAberto] = useState(false);
   const [input, setInput] = useState("");
@@ -36,9 +39,9 @@ function CreateTask(props) {
 
   return (
     //
-    <div className=" ">
+    <div>
       {inputAberto ? (
-        <div className="inputAddTask min-w-full relative flex items-center justify-end rounded-md bg-slate-700 focus: ">
+        <div className="inputAddTask min-w-full relative flex items-center justify-end rounded-md bg-slate-700 focus:">
           <input
             type="text"
             ref={inputRef}
@@ -51,9 +54,9 @@ function CreateTask(props) {
           ></input>
           <div
             onClick={fecharInput}
-            className=" absolute cursor-pointer bg-blue-600 px-4 py-2 mr-2 rounded text-white"
+            className=" absolute cursor-pointer bg-blue-500 px-2 py-2 mr-2 rounded-3xl text-white hover:bg-blue-600  "
           >
-            Adicionar
+            <MoveRight size={30}/>
           </div>
         </div>
       ) : (
@@ -61,11 +64,14 @@ function CreateTask(props) {
           onClick={() => setInputAberto(true)}
           className="flex items-center min-w-full  bg-blue-600 p-2 rounded-md cursor-pointer hover:bg-blue-500"
         >
-          <div className="flex items-center gap-1 p-2 relative">
-            <span className=" text-slate-100 text-lg font-bold ">
+
+          <div className="flex items-center justify-between min-w-full p-2 relative">
+            <span className=" text-slate-100 text-lg font-bold">
               Adicionar nova tarefa
             </span>
-            <span className="text-slate-100 font-bold text-lg">+</span>
+            <span className="text-slate-100 font-bold">
+              <Plus size={30}/>
+            </span>
           </div>
         </li>
       )}

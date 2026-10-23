@@ -4,15 +4,19 @@ import Tasks from "./components/Tasks";
 
 function App() {
   const [task, setTask] = useState([]);
-  //Utilização do useEffect para renderizar as tasks salvas no localStorage
+  
   useEffect(() => {
+    carregarTasks();
+  }, []);
+
+  function carregarTasks(){
     //1-consulta
     const tasksSalvas = localStorage.getItem("tasks");
     //2- conversão JSON -> String e atualização do estado caso exista tarefas no localStorage
     if (tasksSalvas) {
       setTask(JSON.parse(tasksSalvas));
     }
-  }, []);
+  }
 
   function taskClick(taskId) {
     //Pegar o ID do Task que será sublinhado e montar a lógica que fará ele ser uma task em estado de finalizado!
