@@ -17,11 +17,10 @@ function App() {
       setTask(JSON.parse(tasksSalvas));
     }
   }
-
   function taskClick(taskId) {
     //Pegar o ID do Task que será sublinhado e montar a lógica que fará ele ser uma task em estado de finalizado!
     const newTask = task.map((task) => {
-      if (task.id === taskId) {
+      if (task.id === taskId){
         return {
           ...task,
           completed: !task.completed,
