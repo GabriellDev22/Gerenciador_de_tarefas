@@ -25,7 +25,6 @@ function Tasks(props) {
             </TaskList>
           ))
         }
-        ;
       </ul>
       <div className="p-6 absolute bottom-0 w-full ">
         <CreateTask

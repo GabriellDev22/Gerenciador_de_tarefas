@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-import Tasks from "./components/Tasks";
-
+import Tasks from "./components/Tasks.jsx";
 function App() {
   const [task, setTask] = useState([]);
   
@@ -18,6 +16,7 @@ function App() {
     }
   }
   function taskClick(taskId) {
+
     //Pegar o ID do Task que será sublinhado e montar a lógica que fará ele ser uma task em estado de finalizado!
     const newTask = task.map((task) => {
       if (task.id === taskId){
