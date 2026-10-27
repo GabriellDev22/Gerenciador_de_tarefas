@@ -2,7 +2,12 @@ import { Trash } from "lucide-react";
 import { CircleCheckBig } from "lucide-react";
 import { Circle } from "lucide-react";
 import { MoveRight } from "lucide-react";
+//import { useEffect } from "react";
+import { useNavigate } from "react-router";
 function TaskList(props) {
+
+  const navigate = useNavigate();
+  
   function soundCompleted() {
     const audio = new Audio("/pop2.mp3");
     audio.currentTime = 0;
@@ -35,7 +40,7 @@ function TaskList(props) {
         </div>
       </span>
       <button
-        //onClick={props.verDescricao}
+        onClick={() => navigate(`/tasks/${props.task.id}`)} 
         className="bg-blue-500 rounded px-3 py-2 cursor-pointer hover:bg-blue-600"
       >
         <MoveRight size={30} />

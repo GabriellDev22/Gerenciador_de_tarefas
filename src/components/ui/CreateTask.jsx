@@ -92,7 +92,7 @@ function CreateTask(props) {
             placeholder="Nova task+"
           ></input>
           <div
-            onClick={fecharInput}
+            onClick = {() => adicionarTask()}
             className=" absolute cursor-pointer bg-blue-500 px-2 py-2 mr-2 rounded-3xl text-white hover:bg-blue-600  "
           >
             <MoveRight size={30} />
@@ -100,7 +100,7 @@ function CreateTask(props) {
         </div>
       ) : (
         <li
-          onClick={() => setInputAberto(true)}
+          onClick={() => abrirInput()}
           className="flex items-center min-w-full  bg-blue-600 p-2 rounded-md cursor-pointer hover:bg-blue-500"
         >
           <div className="flex items-center justify-between min-w-full p-2 relative">

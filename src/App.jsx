@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import Tasks from "./components/Tasks.jsx";
+import "./App.css";
+import Tasks from "./pages/Tasks.jsx";
+import Sidebar from "./components/ui/Sidebar.jsx";
 function App() {
   const [task, setTask] = useState([]);
   
@@ -42,7 +44,7 @@ function App() {
       {
         id: task.length + 1,
         title: titulo,
-        describe: "",
+        describe: "teste1123",
         completed: false,
       },
       ...task,
@@ -55,7 +57,9 @@ function App() {
   return (
     <div className="min-h-screen h-full w-full flex justify-center bg-linear-to-b from-blue-900 via-blue-900 to-blue-950 ">
       {/*navbar lateral*/}
-      <div></div>
+      <div>
+        <Sidebar/>
+      </div>
       <div className="lg:pl-10 flex flex-col ">
         <h1 className=" text-4xl font-bold text-center text-slate-100 pt-10">
           Gerenciador de tarefas

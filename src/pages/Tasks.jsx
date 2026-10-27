@@ -1,7 +1,6 @@
 import "../App.css";
-//import { useEffect } from "react";
-import TaskList from "./ui/TaskList";
-import CreateTask from "./ui/CreateTask";
+import TaskList from "../components/ui/TaskList";
+import CreateTask from "../components/ui/CreateTask";
 function Tasks(props) {
   return (
     <div className=" bg-slate-900 rounded-md flex-1 flex relative flex-col max-w-4xl ">
